@@ -1,27 +1,13 @@
 import json
 from datetime import date
 
-# def buildTicket(title, description, priority, tags):
-#     newTicket = {}
-#     newTicket["id"] = "unknown"
-#     newTicket["title"] = title
-#     newTicket["description"] = description
-#     if priority in ["Low","Medium", "High"]:
-#         newTicket["priority"] = priority
-#     else:
-#         newTicket["priority"] = "Medium"
-#     newTicket["status"] = "Open"
-#     newTicket["tags"] = tags
-#     newTicket["createdAt"] = str(date.today())
-#     return newTicket
-
 def readTickets():
-    with open('./tickets.json') as file:
+    with open('./tickets.json', 'r', encoding='utf-8') as file:
         tickets = json.load(file)
     return tickets
 
 def writeTickets(tickets):
-    with open('./tickets.json','w') as file:
+    with open('./tickets.json','w', encoding='utf-8') as file:
         json.dump(tickets, file, indent=4)
 
 def buildTicket(id,title,description,priority,tags,createdAt):
