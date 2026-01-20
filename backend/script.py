@@ -27,7 +27,7 @@ def addTicket(title, description, priority, tags):
     newTicket = buildTicket(id,title,description,priority,tags,createdAt)
     tickets.append(newTicket)
     writeTickets(tickets)
-    print("Ticket successfully added")
+    return tickets
 
 def updateTicket(id, status):
     tickets = readTickets()
