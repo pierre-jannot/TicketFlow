@@ -45,3 +45,10 @@ def add_ticket(item: NewTicket):
 def update_ticket(id: int, item: UpdateTicket):
     status = item.status
     return updateTicket(id,status)
+
+@app.delete("/tickets/{id}")
+def remove_ticket(id: int, confirm: str):
+    if confirm == "DELETE":
+        return deleteTicket(id)
+    else:
+        return "To remove the ticket, send DELETE"

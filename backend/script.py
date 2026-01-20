@@ -8,7 +8,7 @@ def readTickets():
 
 def writeTickets(tickets):
     with open('./tickets.json','w', encoding='utf-8') as file:
-        json.dump(tickets, file, indent=4)
+        json.dump(tickets, file, indent=2)
 
 def buildTicket(id,title,description,priority,tags,createdAt):
     newTicket = {"id":id,
@@ -34,6 +34,15 @@ def updateTicket(id, status):
     for ticket in tickets:
         if ticket["id"] == id:
             ticket["status"] = status
+    writeTickets(tickets)
+    return tickets
+
+def deleteTicket(id):
+    tickets = readTickets()
+    for i, ticket in enumerate(tickets):
+        if ticket["id"] == id:
+            tickets.pop(i)
+            break
     writeTickets(tickets)
     return tickets
 
