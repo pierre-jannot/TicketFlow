@@ -45,7 +45,9 @@ def addTicket(title, description, priority, tags):
 
 def updateTicket(id, status):
     tickets = readTickets()
-    tickets[id-1]["status"] = status
+    for ticket in tickets:
+        if ticket["id"] == id:
+            ticket["status"] = status
     writeTickets(tickets)
     return tickets
 
