@@ -9,12 +9,11 @@ export function GetTickets(){
             data.forEach(ticket => {
             const li = document.createElement("li");
             li.id = ticket.id;
-
+            li.className = `ticket ticket-${ticket.priority.toLowerCase()}`;
             li.innerHTML = `
-                <section class="ticket">
-                <strong>${ticket.title}</strong>
+                <section>
+                <strong class="title">${ticket.title}</strong>
                 <p>${ticket.description}</p>
-                <p>Priorité : ${ticket.priority}</p>
                 <p>Statut : ${ticket.status}</p>
                 </section>
             `;
