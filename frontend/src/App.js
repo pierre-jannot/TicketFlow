@@ -1,3 +1,4 @@
+import './App.css'
 import { GetTickets } from './components/Controller.js'
 
 function App() {
