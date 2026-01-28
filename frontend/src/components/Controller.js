@@ -13,7 +13,7 @@ export function GetTickets(){
             li.innerHTML = `
                 <section class="ticket">
                 <strong>${ticket.title}</strong>
-                <p>Description : ${ticket.description}</p>
+                <p>${ticket.description}</p>
                 <p>Priorité : ${ticket.priority}</p>
                 <p>Statut : ${ticket.status}</p>
                 </section>
