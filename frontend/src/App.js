@@ -1,5 +1,5 @@
 import './App.css'
-import { GetTickets } from './components/Controller.js'
+import { TicketList } from './components/TicketList.js'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <span class="legend-red">Haute</span>
       </p>
       <ul id="tickets"></ul>
-      <GetTickets></GetTickets>
+      <TicketList></TicketList>
     </div>
   );
 }

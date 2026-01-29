@@ -27,7 +27,7 @@ def addTicket(title, description, priority, tags):
     newTicket = buildTicket(id,title,description,priority,tags,createdAt)
     tickets.append(newTicket)
     writeTickets(tickets)
-    return tickets
+    return newTicket
 
 def updateTicket(id, status):
     tickets = readTickets()
@@ -44,7 +44,7 @@ def deleteTicket(id):
             tickets.pop(i)
             break
     writeTickets(tickets)
-    return tickets
+    return "Ticket " + str(id) + " deleted."
 
 def filterTickets(value):
     tickets = readTickets()

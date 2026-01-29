@@ -18,6 +18,7 @@ h1 {
 }
 
 .ticket {
+  max-width: 400px;
   display: flex;
   text-align: center;
   align-items: center;
@@ -75,4 +76,32 @@ h1 {
 
 .legend-green {
   background-color: #2b5b3f;
+}
+
+.overlay {
+  z-index: 150;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  background: white;
+  padding: 20px;
+  margin: 40vh auto;
+  width: 400px;
+  border-radius: 10px;
+}
+
+#add-ticket {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
 }
