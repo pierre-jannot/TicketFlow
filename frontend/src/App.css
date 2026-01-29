@@ -1,12 +1,15 @@
+/* Couleur de fond de la page */
 body {
   background-color: #f4f4f4;
 }
 
+/* Mise en forme du titre */
 h1 {
   text-align: center;
   padding: 20px;
 }
 
+/*Style du groupe tickets*/
 #tickets {
     max-width: 95vw;
     gap: 15px;
@@ -17,6 +20,7 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+/* Style unitaire des tickets */
 .ticket {
   max-width: 400px;
   display: flex;
@@ -35,6 +39,7 @@ h1 {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* Style de la légende */
 .legend {
   background-color: white;
   padding: 10px;
@@ -55,6 +60,7 @@ h1 {
   margin: 2px;
 }
 
+/* Mise en forme des tickets et des carrés de légende par statut */
 .ticket-high {
   border-top: 15px solid #c23b21;
 }
@@ -79,6 +85,8 @@ h1 {
   background-color: #2b5b3f;
 }
 
+
+/* Style de l'overlay */
 .overlay {
   z-index: 150;
   position: fixed;
@@ -89,6 +97,7 @@ h1 {
   background: rgba(0,0,0,0.5);
 }
 
+/* Style de la modale */
 .modal {
   display: flex;
   align-items: center;
@@ -102,26 +111,31 @@ h1 {
   border-radius: 10px;
 }
 
+/* Style du bouton d'ajout de ticket */
 #add-ticket {
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
 
+/* Style des éléments titre et description des tickets */
 #title, #description {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
+/* Style de la description */
 #description {
   width: 300px;
   height: 60px;
 }
 
+/* Style des groupes de boutons priority et status */
 #priority-buttons, #status-buttons {
   display: inline-flex;
 }
 
+/* Style des boutons priority et status */
 #priority-buttons button, #status-buttons button {
   border: 1px solid #ccc;
   padding: 8px 12px;
@@ -132,35 +146,40 @@ h1 {
   cursor: pointer;
 }
 
-/* enlève double bordures entre boutons */
+/* Suppression de la bordure entre les boutons */
 #button-medium, #button-en-cours {
   border-left: none;
 }
 
-/* radius extérieur seulement */
+/* Suppression du radius gauche */
 #button-low, #button-ouvert {
   border-radius: 8px 0 0 8px;
 }
 
+/* Suppression du radius droit */
 #button-high, #button-fermé {
   border-radius: 0 8px 8px 0;
 }
 
+/* Couleur verte sur le bouton gauche lorsqu'il est activé */
 .selected-Low #button-low, .selected-Ouvert #button-ouvert {
   background-color: #2b5b3f;
   color: white;
 }
 
+/* Couleur orange sur le bouton central lorsqu'il est activé */
 .selected-Medium #button-medium, .selected-En-cours #button-en-cours {
   background-color: #e9972d;
   color: white;
 }
 
+/* Couleur rouge sur le bouton droit lorsqu'il est activé */
 .selected-High #button-high, .selected-Fermé #button-fermé {
   background-color: #c23b21;
   color: white;
 }
 
+/* Mise en forme des tags */
 .tags {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
