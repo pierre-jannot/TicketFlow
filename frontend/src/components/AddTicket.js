@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Composant d'ajout de ticket
-export function AddTicket({ onAddTicket }){
+export function AddTicket({ onAddTicket, setError }){
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('Non renseigné');
@@ -36,11 +36,19 @@ export function AddTicket({ onAddTicket }){
                     tags: selectedTags
                 })
             });
-            const ticket = await response.json();
+            const data = await response.json();
+            if(data.code===201){
+                console.log(data.code);
+                console.log(data.message);
+                onAddTicket(data.value);
+            } else {
+                throw data;
+            }
             // Ajout du ticket dans le front
-            onAddTicket(ticket);
         } catch (err) {
             console.error(err);
+            const error = `Code: ${err.code} - Message: ${err.message}`
+            setError(error);
         } finally {
             setLoading(false);
             // Fermeture de la modale

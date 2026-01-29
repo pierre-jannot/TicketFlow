@@ -66,7 +66,7 @@ export function TicketList(){
             {error && <p className="error">⚠ {error}</p>}
             {/* Appel d'ajout de ticket */}
             <div id="add-ticket">
-                <AddTicket onAddTicket={addTicket}/>
+                <AddTicket onAddTicket={addTicket} setError={setError}/>
             </div>
             {/* Affichage des tickets */}
             <ul id="tickets">

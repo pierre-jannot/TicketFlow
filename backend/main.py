@@ -1,10 +1,23 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from script import *
 from pydantic import BaseModel
 from typing import List
 from enum import Enum
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 
 app = FastAPI()
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=422,
+        content={
+            "code": 422,
+            "message": "Unprocessable content",
+            "value": ""
+        }
+    )
 
 class Priority(str, Enum):
     High = "High"
@@ -42,7 +55,7 @@ def add_ticket(item: NewTicket):
     description = item.description
     priority = item.priority
     tags = item.tags
-    return addTicket(title,description,priority,tags)
+    return {"code":201,"message":"POST /tickets successfull","value":addTicket(title,description,priority,tags)}
 
 @app.patch("/tickets/{id}")
 def update_ticket(id: int, item: UpdateTicket):
