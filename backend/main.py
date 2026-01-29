@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from script import *
 from pydantic import BaseModel
 from typing import List
@@ -31,7 +31,10 @@ def read_root():
 
 @app.get("/tickets")
 def show_tickets():
-    return readTickets()
+    try:
+        return {"code":200,"message":"GET /tickets successfull","value":readTickets()}
+    except:
+        raise HTTPException(status_code=404, detail="Tickets not found")
 
 @app.post("/tickets")
 def add_ticket(item: NewTicket):
