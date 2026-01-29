@@ -37,9 +37,11 @@ export function TicketList(){
     //Affichage dans App.js des éléments
     return (
         <>
+            {/* Appel d'ajout de ticket */}
             <div id="add-ticket">
                 <AddTicket onAddTicket={addTicket}/>
             </div>
+            {/* Affichage des tickets */}
             <ul id="tickets">
                 {
                     tickets.map((ticket) => (
@@ -55,6 +57,7 @@ export function TicketList(){
                     ))
                 }
             </ul>
+            {/* Si le bouton supprimer est cliqué, exécution de RemoveTicket */}
             {removeSelectedTicket && (
                 <RemoveTicket
                 onRemoveTicket={removeTicket}
@@ -62,6 +65,7 @@ export function TicketList(){
                 id={removeSelectedTicket}
                 />
             )}
+            {/* Si le bouton modifier est cliqué, exécution de UpdateTicket */}
             {updateSelectedTicket && (
                 <UpdateTicket
                 onUpdateTicket={updateTicket}

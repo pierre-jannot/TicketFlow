@@ -27,6 +27,7 @@ h1 {
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
   background-color: white;
   transition: transform 0.3s ease;
+  justify-content: center;
 }
 
 .ticket:hover {
@@ -91,6 +92,7 @@ h1 {
 .modal {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   flex-direction: column;
   background: white;

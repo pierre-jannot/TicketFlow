@@ -120,17 +120,5 @@
       "documentation"
     ],
     "createdAt": "2026-01-07"
-  },
-  {
-    "id": 11,
-    "title": "Non renseign\u00e9",
-    "description": "Pas de description",
-    "priority": "Medium",
-    "status": "Open",
-    "tags": [
-      "form",
-      "performance"
-    ],
-    "createdAt": "2026-01-29"
   }
 ]
