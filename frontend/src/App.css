@@ -116,45 +116,45 @@ h1 {
   height: 60px;
 }
 
-#priority-buttons {
+#priority-buttons, #status-buttons {
   display: inline-flex;
 }
 
-#priority-buttons button {
+#priority-buttons button, #status-buttons button {
   border: 1px solid #ccc;
   padding: 8px 12px;
   background: #eee;
 }
 
-#priority-buttons button:hover {
+#priority-buttons button:hover, #status-buttons button:hover {
   cursor: pointer;
 }
 
 /* enlève double bordures entre boutons */
-#button-medium {
+#button-medium, #button-en-cours {
   border-left: none;
 }
 
 /* radius extérieur seulement */
-#button-low {
+#button-low, #button-ouvert {
   border-radius: 8px 0 0 8px;
 }
 
-#button-high {
+#button-high, #button-fermé {
   border-radius: 0 8px 8px 0;
 }
 
-.selected-Low #button-low {
+.selected-Low #button-low, .selected-Ouvert #button-ouvert {
   background-color: #2b5b3f;
   color: white;
 }
 
-.selected-Medium #button-medium {
+.selected-Medium #button-medium, .selected-En-cours #button-en-cours {
   background-color: #e9972d;
   color: white;
 }
 
-.selected-High #button-high {
+.selected-High #button-high, .selected-Fermé #button-fermé {
   background-color: #c23b21;
   color: white;
 }

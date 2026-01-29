@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { AddTicket } from "./AddTicket"
 import { RemoveTicket } from "./RemoveTicket"
+import { UpdateTicket } from "./UpdateTicket";
 
 export function TicketList(){
     //Mise à jour de la liste tickets
     const [tickets, setTickets] = useState([]);
-    const [selectedTicket, setSelectedTicket] = useState(null);
+    const [removeSelectedTicket, setRemoveSelectedTicket] = useState(null);
+    const [updateSelectedTicket, setUpdateSelectedTicket] = useState(null);
 
     //Gestion des ajouts de tickets
     const addTicket = (newTicket) => {
@@ -15,6 +17,11 @@ export function TicketList(){
     //Gestion de la suppression des tickets
     const removeTicket = (id) => {
         setTickets(prev => prev.filter(ticket => ticket.id !== id));
+    }
+
+    //Gestion de la suppression des tickets
+    const updateTicket = (id, newStatus) => {
+        setTickets(prev => prev.map(ticket => ticket.id === id ? {...ticket, status: newStatus } : ticket));
     }
 
     //GET des tickets
@@ -41,17 +48,25 @@ export function TicketList(){
                                 <strong className="title">{ticket.title}</strong>
                                 <p>{ticket.description}</p>
                                 <p><strong>Statut</strong> : {ticket.status}</p>
-                                <button onClick={() => setSelectedTicket(ticket.id)}>Supprimer</button>
+                                <button onClick={() => setRemoveSelectedTicket(ticket.id)}>Supprimer</button>
+                                <button onClick={() => setUpdateSelectedTicket(ticket)}>Modifier</button>
                             </section>
                         </li>
                     ))
                 }
             </ul>
-            {selectedTicket && (
+            {removeSelectedTicket && (
                 <RemoveTicket
                 onRemoveTicket={removeTicket}
-                onClose={() => setSelectedTicket(null)}
-                id={selectedTicket}
+                onClose={() => setRemoveSelectedTicket(null)}
+                id={removeSelectedTicket}
+                />
+            )}
+            {updateSelectedTicket && (
+                <UpdateTicket
+                onUpdateTicket={updateTicket}
+                onClose={() => setUpdateSelectedTicket(null)}
+                selectedTicket={updateSelectedTicket}
                 />
             )}
         </>

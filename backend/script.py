@@ -31,11 +31,13 @@ def addTicket(title, description, priority, tags):
 
 def updateTicket(id, status):
     tickets = readTickets()
+    newTicket = []
     for ticket in tickets:
         if ticket["id"] == id:
             ticket["status"] = status
+            newTicket = ticket
     writeTickets(tickets)
-    return tickets
+    return newTicket
 
 def deleteTicket(id):
     tickets = readTickets()

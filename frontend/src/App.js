@@ -5,11 +5,11 @@ function App() {
   return (
     <div>
       <h1>Affichage des tickets</h1>
-      <p class="legend">
+      <p className="legend">
         <strong>Priorités : </strong>
-        <span class="legend-green">Basse</span>
-        <span class="legend-yellow">Moyenne</span>
-        <span class="legend-red">Haute</span>
+        <span className="legend-green">Basse</span>
+        <span className="legend-yellow">Moyenne</span>
+        <span className="legend-red">Haute</span>
       </p>
       <ul id="tickets"></ul>
       <TicketList></TicketList>

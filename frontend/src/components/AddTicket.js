@@ -5,7 +5,7 @@ export function AddTicket({ onAddTicket }){
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('Non renseigné');
     const [description, setDescription] = useState('Pas de description');
-    const [priority, setPriority] = useState("medium");
+    const [priority, setPriority] = useState("Medium");
     const [selectedTags, setSelectedTags] = useState([]);
     const availableTags = [
             "bug","backend","documentation","feature","form",

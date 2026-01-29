@@ -29,7 +29,7 @@
     "title": "Am\u00e9liorer la performance du tableau",
     "description": "La liste de tickets devient lente au-del\u00e0 de 200 entr\u00e9es. Optimiser le rendu.",
     "priority": "High",
-    "status": "Ouvert",
+    "status": "Ferm\u00e9",
     "tags": [
       "performance",
       "frontend"
@@ -123,14 +123,13 @@
   },
   {
     "id": 11,
-    "title": "Ticket test",
-    "description": "Description du ticket test",
+    "title": "Non renseign\u00e9",
+    "description": "Pas de description",
     "priority": "Medium",
-    "status": "Ouvert",
+    "status": "Open",
     "tags": [
       "form",
-      "sorting",
-      "validation"
+      "performance"
     ],
     "createdAt": "2026-01-29"
   }
