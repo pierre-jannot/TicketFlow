@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Composant de mise à jour du statut d'un ticket
-export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket }){
+export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket, setError }){
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(selectedTicket.status);
 

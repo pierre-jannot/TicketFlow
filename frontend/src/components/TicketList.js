@@ -42,9 +42,10 @@ export function TicketList(){
                 }
 
                 if (!res.ok) {
-                    throw new Error(
-                    data?.detail || `Erreur serveur (${res.status})`
-                    );
+                    const err = data
+                    ? `Code: ${data.code || res.status} - Message: ${data.detail || data.message}`
+                    : `Erreur serveur (${res.status})`;
+                    throw new Error(err);
                 }
 
                 console.log(data.code);
@@ -53,7 +54,8 @@ export function TicketList(){
             }
             catch(err) {
                 console.log(err);
-                setError(err.message);
+                const error = `${err.message}`
+                setError(error);
             }
         };
         load();
@@ -99,6 +101,7 @@ export function TicketList(){
                 onUpdateTicket={updateTicket}
                 onClose={() => setUpdateSelectedTicket(null)}
                 selectedTicket={updateSelectedTicket}
+                setError={setError}
                 />
             )}
         </>
