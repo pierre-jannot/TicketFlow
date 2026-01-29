@@ -12,9 +12,9 @@ class Priority(str, Enum):
     Low = "Low"
 
 class Status(str, Enum):
-    Open = "Open"
-    InProgress = "In progress"
-    Closed = "Closed"
+    Open = "Ouvert"
+    InProgress = "En cours"
+    Closed = "Fermé"
 
 class UpdateTicket(BaseModel):
     status: Status

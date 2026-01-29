@@ -105,3 +105,61 @@ h1 {
   justify-content: center;
   padding-bottom: 20px;
 }
+
+#title, #description {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#description {
+  width: 300px;
+  height: 60px;
+}
+
+#priority-buttons {
+  display: inline-flex;
+}
+
+#priority-buttons button {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  background: #eee;
+}
+
+#priority-buttons button:hover {
+  cursor: pointer;
+}
+
+/* enlève double bordures entre boutons */
+#button-medium {
+  border-left: none;
+}
+
+/* radius extérieur seulement */
+#button-low {
+  border-radius: 8px 0 0 8px;
+}
+
+#button-high {
+  border-radius: 0 8px 8px 0;
+}
+
+.selected-Low #button-low {
+  background-color: #2b5b3f;
+  color: white;
+}
+
+.selected-Medium #button-medium {
+  background-color: #e9972d;
+  color: white;
+}
+
+.selected-High #button-high {
+  background-color: #c23b21;
+  color: white;
+}
+
+.tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}

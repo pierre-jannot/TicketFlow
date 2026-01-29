@@ -4,7 +4,7 @@
     "title": "Bug bouton login",
     "description": "Le bouton de connexion ne r\u00e9pond pas sur mobile (Android).",
     "priority": "High",
-    "status": "Fermé",
+    "status": "Ferm\u00e9",
     "tags": [
       "bug",
       "ui",
@@ -63,7 +63,7 @@
   {
     "id": 6,
     "title": "Ajouter des badges de statut",
-    "description": "Afficher un badge color\u00e9 selon le statut (Ouvert, En cours, Fermé) dans la liste.",
+    "description": "Afficher un badge color\u00e9 selon le statut (Ouvert, En cours, Ferm\u00e9) dans la liste.",
     "priority": "Low",
     "status": "Ouvert",
     "tags": [
@@ -75,7 +75,7 @@
   {
     "id": 7,
     "title": "Fermer un ticket depuis la liste",
-    "description": "Permettre de passer un ticket en 'Fermé' via un bouton d'action rapide sur la ligne.",
+    "description": "Permettre de passer un ticket en 'Ferm\u00e9' via un bouton d'action rapide sur la ligne.",
     "priority": "Medium",
     "status": "Ouvert",
     "tags": [
@@ -115,10 +115,23 @@
     "title": "Documenter les statuts disponibles",
     "description": "Ajouter une section dans la documentation expliquant les statuts et leur usage.",
     "priority": "Low",
-    "status": "Fermé",
+    "status": "Ferm\u00e9",
     "tags": [
       "documentation"
     ],
     "createdAt": "2026-01-07"
+  },
+  {
+    "id": 11,
+    "title": "Ticket test",
+    "description": "Description du ticket test",
+    "priority": "Medium",
+    "status": "Ouvert",
+    "tags": [
+      "form",
+      "sorting",
+      "validation"
+    ],
+    "createdAt": "2026-01-29"
   }
 ]
