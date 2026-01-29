@@ -20,11 +20,20 @@ export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket, setError
                     status: status.replace("-", " ")
                 })
             });
-            const ticket = await response.json();
-            // Mise à jour sur le frontend
-            onUpdateTicket(ticket.id, ticket.status);
+            const data = await response.json();
+            if(data.code==200){
+                // Mise à jour sur le frontend
+                console.log(data.code);
+                console.log(data.message);
+                onUpdateTicket(data.value.id, data.value.status);
+            }
+            else{
+                throw data;
+            }
         } catch (err) {
             console.error(err);
+            const error = `Code: ${err.code} - Message: ${err.message}`
+            setError(error);
         } finally {
             setLoading(false);
             // Fermeture de la modale

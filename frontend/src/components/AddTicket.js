@@ -38,13 +38,14 @@ export function AddTicket({ onAddTicket, setError }){
             });
             const data = await response.json();
             if(data.code===201){
+                // Ajout du ticket dans le front
                 console.log(data.code);
                 console.log(data.message);
                 onAddTicket(data.value);
             } else {
                 throw data;
             }
-            // Ajout du ticket dans le front
+            //Gestion d'erreur
         } catch (err) {
             console.error(err);
             const error = `Code: ${err.code} - Message: ${err.message}`

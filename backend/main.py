@@ -60,7 +60,10 @@ def add_ticket(item: NewTicket):
 @app.patch("/tickets/{id}")
 def update_ticket(id: int, item: UpdateTicket):
     status = item.status
-    return updateTicket(id,status)
+    try:
+        return {"code":200,"message":"PATCH /tickets " + str(id) + " successfull","value":updateTicket(id,status)}
+    except:
+        return {"code":404,"message":"Ticket " + str(id) + " not found","value":""}
 
 @app.delete("/tickets/{id}")
 def remove_ticket(id: int):

@@ -29,7 +29,7 @@
     "title": "Am\u00e9liorer la performance du tableau",
     "description": "La liste de tickets devient lente au-del\u00e0 de 200 entr\u00e9es. Optimiser le rendu.",
     "priority": "High",
-    "status": "Ferm\u00e9",
+    "status": "En cours",
     "tags": [
       "performance",
       "frontend"
