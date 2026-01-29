@@ -41,12 +41,17 @@ def updateTicket(id, status):
 
 def deleteTicket(id):
     tickets = readTickets()
+    found = False
     for i, ticket in enumerate(tickets):
         if ticket["id"] == id:
             tickets.pop(i)
+            found = True
             break
-    writeTickets(tickets)
-    return "Ticket " + str(id) + " deleted."
+    if found:
+        writeTickets(tickets)
+        return "Ticket " + str(id) + " deleted."
+    else:
+        raise Exception("Ticket not found")
 
 def filterTickets(value):
     tickets = readTickets()

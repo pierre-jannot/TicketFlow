@@ -90,6 +90,7 @@ export function TicketList(){
                 onRemoveTicket={removeTicket}
                 onClose={() => setRemoveSelectedTicket(null)}
                 id={removeSelectedTicket}
+                setError={setError}
                 />
             )}
             {/* Si le bouton modifier est cliqué, exécution de UpdateTicket */}

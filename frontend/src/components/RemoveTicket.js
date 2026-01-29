@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Composant de suppression de ticket
-export function RemoveTicket({ onRemoveTicket, onClose, id }){
+export function RemoveTicket({ onRemoveTicket, onClose, id, setError }){
     const [loading, setLoading] = useState(false);
 
     // Exécution de la suppression du ticket
@@ -12,13 +12,21 @@ export function RemoveTicket({ onRemoveTicket, onClose, id }){
             const response = await fetch(`/tickets/${id}`, {
                 method: "DELETE"
             });
-            const ticket = await response.json();
-            console.log(ticket);
-            const deletedId = parseInt(id, 10);
-            // Suppression du ticket dans le front
-            onRemoveTicket(deletedId);
+            const data = await response.json();
+            if(data.code==204){
+                console.log(data.code);
+                console.log(data.message);
+                const deletedId = parseInt(id, 10);
+                // Suppression du ticket dans le front
+                onRemoveTicket(deletedId);
+            }
+            else{
+                throw data;
+            }
         } catch (err) {
             console.error(err);
+            const error = `Code: ${err.code} - Message: ${err.message}`
+            setError(error);
         } finally {
             setLoading(false);
             // Fermeture de la modale

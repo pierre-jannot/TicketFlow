@@ -64,4 +64,7 @@ def update_ticket(id: int, item: UpdateTicket):
 
 @app.delete("/tickets/{id}")
 def remove_ticket(id: int):
-    return deleteTicket(id)
+    try:
+        return {"code":204,"message":"DELETE /tickets " + str(id) + " successfull","value":deleteTicket(id)}
+    except:
+        return {"code":404,"message":"Ticket " + str(id) + " not found","value":""}
