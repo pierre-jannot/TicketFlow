@@ -36,11 +36,24 @@ export function AddTicket({ onAddTicket }){
                     tags: selectedTags
                 })
             });
-            const ticket = await response.json();
+            const text = await response.text();
+            let data;
+
+            try {
+                data = text ? JSON.parse(text) : null;
+            } catch {
+                data = null;
+            }
+
+            if (!response.ok) {
+                throw new Error(
+                    data?.detail || `Erreur serveur (${response.status})`
+                )
+            }
             // Ajout du ticket dans le front
-            onAddTicket(ticket);
+            onAddTicket(data);
         } catch (err) {
-            console.error(err);
+            console.log(err);
         } finally {
             setLoading(false);
             // Fermeture de la modale
