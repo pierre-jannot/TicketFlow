@@ -19,6 +19,10 @@ Dans main.py :
 Endpoint GET permettant l'affichage des tickets :
 Chemin : http://127.0.0.1:8000/tickets
 
+Endpoint POST permettant de trier et filtrer les tickets :
+Chemin : http://127.0.0.1:8000/tickets/sort
+Valeurs attendues : Objet SortAndFilter avec la méthode de tri et les tags de filtres
+
 Endpoint POST permettant l'ajout d'un ticket :
 Chemin : http://127.0.0.1:8000/tickets
 Valeurs attendues : Objet NewTicket avec les valeurs du titre, de la description, de la priorité et des tags

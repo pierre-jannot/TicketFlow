@@ -17,6 +17,11 @@ npm start
 Endpoint GET avec le component TicketList.js
 Chemin : http://127.0.0.1:8000/tickets
 
+Endpoint POST avec le component TicketList.js dans le cas d'un filtre ou d'un tri
+Chemin : http://127.0.0.1:8000/tickets/sort
+Method : POST
+Body : sortMethod, filterMethod
+
 Endpoint POST avec le component AddTicket.js
 Chemin : http://127.0.0.1:8000/tickets
 Method : POST
