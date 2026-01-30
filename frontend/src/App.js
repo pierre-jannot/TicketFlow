@@ -4,7 +4,7 @@ import { TicketList } from './components/TicketList.js'
 function App() {
   return (
     <div>
-      <h1>Affichage des tickets</h1>
+      <h1>Portail des tickets</h1>
       <p className="legend">
         <strong>Priorités : </strong>
         <span className="legend-green">Basse</span>

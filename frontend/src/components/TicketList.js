@@ -96,11 +96,6 @@ export function TicketList(){
     return (
         <>
             {error && <p className="error">⚠ {error}</p>}
-            
-            {/* Appel d'ajout de ticket */}
-            <div id="add-ticket">
-                <AddTicket onAddTicket={addTicket} setError={setError}/>
-            </div>
             <section className="sort-and-filter">
                 {/* Liste des méthodes de tri */}
                 <section className="sort-window">
@@ -141,12 +136,16 @@ export function TicketList(){
                                 <strong className="title">{ticket.title}</strong>
                                 <p>{ticket.description}</p>
                                 <p><strong>Statut</strong> : {ticket.status}</p>
+                                <p><strong>Tags</strong> : {ticket.tags.join(", ")}</p>
+                                <p><strong>Date de création</strong> : {ticket.createdAt}</p>
                                 <button className="delete-button" onClick={() => setRemoveSelectedTicket(ticket.id)}>Supprimer</button>
                                 <button className="modify-button" onClick={() => setUpdateSelectedTicket(ticket)}>Modifier</button>
                             </section>
                         </li>
                     ))
                 }
+                {/* Appel d'ajout de ticket */}
+                <AddTicket onAddTicket={addTicket} setError={setError}/>
             </ul>
             {/* Si le bouton supprimer est cliqué, exécution de RemoveTicket */}
             {removeSelectedTicket && (

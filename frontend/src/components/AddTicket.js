@@ -65,41 +65,42 @@ export function AddTicket({ onAddTicket, setError }){
     };
 
     return (
-        <div>
-            {/* Bouton d'ouverture de la modale */}
-            <button className="add-button" onClick={() => setShowModal(true)}>+</button>
-
-            {/* Affichage de la modale */}
-            {showModal && (
-                <div className="overlay" onClick={() => setShowModal(false)}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <strong>Création d'un ticket</strong>
-                        <input type="text" id="title" placeholder="Titre" required minLength="4"
-                        value={title} onChange={(e) => setTitle(e.target.value)}></input>
-                        <textarea id="description" placeholder="Description" rows={4} required minLength="15"
-                        value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                        <strong>Priorité :</strong>
-                        <section id="priority-buttons" className={`selected-${priority}`}>
-                            <button id="button-low" onClick={() => setPriority("Low")}>Basse</button>
-                            <button id="button-medium" onClick={() => setPriority("Medium")}>Moyenne</button>
-                            <button id="button-high" onClick={() => setPriority("High")}>Haute</button>
-                        </section>
-                        <p>Cochez les tags pertinents :</p>
-                        <div className="tags">
-                            {availableTags.map(tag => (
-                                <label key={tag}>
-                                    <input type="checkbox" checked={selectedTags.includes(tag)} onChange={() => toggleTag(tag)}/>
-                                    {tag}
-                                </label>
-                            ))}
-                        </div>
-                        {/* Bouton de confirmation de l'ajout */}
-                        <button onClick={handleAddTicket} disabled={loading}>
-                            {loading ? "Ajout en cours..." : "Ajouter ticket test"}
-                        </button>
+        <>
+        {/* Bouton d'ouverture de la modale */}
+        <li className="ticket ticket-add">
+        <button className="add-button" onClick={() => setShowModal(true)}>+</button>
+        </li>
+        {/* Affichage de la modale */}
+        {showModal && (
+            <div className="overlay" onClick={() => setShowModal(false)}>
+                <div className="modal" onClick={(e) => e.stopPropagation()}>
+                    <strong>Création d'un ticket</strong>
+                    <input type="text" id="title" placeholder="Titre" required minLength="4"
+                    value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                    <textarea id="description" placeholder="Description" rows={4} required minLength="15"
+                    value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                    <strong>Priorité :</strong>
+                    <section id="priority-buttons" className={`selected-${priority}`}>
+                        <button id="button-low" onClick={() => setPriority("Low")}>Basse</button>
+                        <button id="button-medium" onClick={() => setPriority("Medium")}>Moyenne</button>
+                        <button id="button-high" onClick={() => setPriority("High")}>Haute</button>
+                    </section>
+                    <p>Cochez les tags pertinents :</p>
+                    <div className="tags">
+                        {availableTags.map(tag => (
+                            <label key={tag}>
+                                <input type="checkbox" checked={selectedTags.includes(tag)} onChange={() => toggleTag(tag)}/>
+                                {tag}
+                            </label>
+                        ))}
                     </div>
+                    {/* Bouton de confirmation de l'ajout */}
+                    <button onClick={handleAddTicket} disabled={loading}>
+                        {loading ? "Ajout en cours..." : "Ajouter ticket test"}
+                    </button>
                 </div>
-            )}
-        </div>
+            </div>
+        )}
+        </>
     );
 }

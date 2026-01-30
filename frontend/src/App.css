@@ -12,6 +12,7 @@ h1 {
 /*Style du groupe tickets*/
 #tickets {
   justify-content: center;
+  align-items: center;
   margin: auto;
   max-width: 95vw;
   gap: 15px;
@@ -86,6 +87,16 @@ h1 {
   background-color: #2b5b3f;
 }
 
+.ticket-add {
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+}
+
+.ticket-add:hover {
+  transform: translateY(0px);
+  box-shadow: 0 0 0 0;
+}
+
 .sort-and-filter {
   width: auto;
   display: grid;
@@ -125,11 +136,10 @@ h1 {
 }
 
 .add-button {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  width: 35px;
-  height: 35px;
-  margin-left: 2.5vw;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
 }
 
@@ -170,7 +180,7 @@ h1 {
   flex-direction: column;
   background: white;
   padding: 20px;
-  margin: 40vh auto;
+  margin: 30vh auto;
   width: 400px;
   border-radius: 10px;
 }

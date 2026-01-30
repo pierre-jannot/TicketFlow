@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request
 from script import *
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 from enum import Enum
 from fastapi.responses import JSONResponse
@@ -29,16 +29,22 @@ class Status(str, Enum):
     InProgress = "En cours"
     Closed = "Fermé"
 
+class SortMethod(str, Enum):
+    Status = "Status"
+    Priority = "Priority"
+    Id = "Id"
+    Date = "Date"
+
 class SortAndFilter(BaseModel):
-    sortMethod: str
+    sortMethod: SortMethod
     filterMethod: List[str]
 
 class UpdateTicket(BaseModel):
     status: Status
 
 class NewTicket(BaseModel):
-    title: str
-    description: str
+    title: str = Field(min_length=3, max_length=30)
+    description: str = Field(min_length=0, max_length=100)
     priority: Priority
     tags: List[str]
 
