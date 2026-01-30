@@ -23,8 +23,6 @@ export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket, setError
             const data = await response.json();
             if(data.code==200){
                 // Mise à jour sur le frontend
-                console.log(data.code);
-                console.log(data.message);
                 onUpdateTicket(data.value.id, data.value.status);
             }
             else{

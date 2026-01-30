@@ -39,8 +39,6 @@ export function AddTicket({ onAddTicket, setError }){
             const data = await response.json();
             if(data.code===201){
                 // Ajout du ticket dans le front
-                console.log(data.code);
-                console.log(data.message);
                 onAddTicket(data.value);
             } else {
                 throw data;

@@ -14,8 +14,6 @@ export function RemoveTicket({ onRemoveTicket, onClose, id, setError }){
             });
             const data = await response.json();
             if(data.code==204){
-                console.log(data.code);
-                console.log(data.message);
                 const deletedId = parseInt(id, 10);
                 // Suppression du ticket dans le front
                 onRemoveTicket(deletedId);

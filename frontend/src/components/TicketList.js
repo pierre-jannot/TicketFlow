@@ -48,12 +48,10 @@ export function TicketList(){
                     throw new Error(err);
                 }
 
-                console.log(data.code);
-                console.log(data.message);
                 setTickets(data.value);
             }
             catch(err) {
-                console.log(err);
+                console.error(err);
                 const error = `${err.message}`
                 setError(error);
             }
