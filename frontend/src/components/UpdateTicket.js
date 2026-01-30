@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Composant de mise à jour du statut d'un ticket
-export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket, setError }){
+export function UpdateTicket({ toggleReload, onClose, selectedTicket, setError }){
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(selectedTicket.status);
 
@@ -31,8 +31,8 @@ export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket, setError
                 : `Erreur serveur (${res.status})`;
                 throw new Error(err);
             }
-            // Mise à jour sur le frontend
-            onUpdateTicket(data.id, data.status);
+            // Rechargement du GET/POST
+            toggleReload();
         } catch (err) {
             console.error(err);
             const error = `${err.message}`

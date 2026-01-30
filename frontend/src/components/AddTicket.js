@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Composant d'ajout de ticket
-export function AddTicket({ onAddTicket, setError }){
+export function AddTicket({ toggleReload, setError }){
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('Non renseigné');
@@ -50,8 +50,8 @@ export function AddTicket({ onAddTicket, setError }){
                 : `Erreur serveur (${res.status})`;
                 throw new Error(err);
             }
-            //Ajout du ticket dans le frontend
-            onAddTicket(data);
+            //Relancement de la requête tickes
+            toggleReload();
             //Gestion d'erreur
         } catch (err) {
             console.error(err);

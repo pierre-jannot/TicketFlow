@@ -5,6 +5,7 @@ import { UpdateTicket } from "./UpdateTicket";
 
 export function TicketList(){
     //Mise à jour de la liste tickets
+    const [reload, setReload] = useState(false);
     const [tickets, setTickets] = useState([]);
     const [sortMethod, setSortMethod] = useState('');
     const [filterMethod, setFilterMethod] = useState([]);
@@ -16,23 +17,13 @@ export function TicketList(){
             "frontend","mobile","performance","search",
             "sorting","ui","ux","validation","workflow"
             ];
+    //Rechargement du GET/POST
+    const toggleReload = () => {
+        setReload(prev => !prev);
+    }
+
     //Gestion des erreurs
     const [error, setError] = useState(null);
-
-    //Gestion des ajouts de tickets
-    const addTicket = (newTicket) => {
-        setTickets(prevTickets => [...prevTickets, newTicket]);
-    }
-
-    //Gestion de la suppression des tickets
-    const removeTicket = (id) => {
-        setTickets(prev => prev.filter(ticket => ticket.id !== id));
-    }
-
-    //Gestion de la suppression des tickets
-    const updateTicket = (id, newStatus) => {
-        setTickets(prev => prev.map(ticket => ticket.id === id ? {...ticket, status: newStatus } : ticket));
-    }
 
     // Mise en place du toggle/untoggle des filtres tags
     const toggleTag = (tag) => {
@@ -90,7 +81,7 @@ export function TicketList(){
         };
         load();
     },
-    [sortMethod,filterMethod]);
+    [sortMethod,filterMethod,reload]);
 
     //Affichage dans App.js des éléments
     return (
@@ -104,10 +95,12 @@ export function TicketList(){
                     name="sort-method"
                     value={sortMethod}
                     onChange={(e) => setSortMethod(e.target.value)}>
-                        <option value="Id">Id</option>
+                        <option value="Id Asc">Id ↑</option>
+                        <option value="Id Desc">Id ↓</option>
                         <option value="Priority">Priorité</option>
                         <option value="Status">Statut</option>
-                        <option value="Date">Date</option>
+                        <option value="Date Asc">Date ↑</option>
+                        <option value="Date Desc">Date ↓</option>
                     </select>
                 </section>
                 {/* Choix des tags de filtre */}
@@ -129,11 +122,13 @@ export function TicketList(){
             </section>
             {/* Affichage des tickets */}
             <ul id="tickets">
+                {/* Appel d'ajout de ticket */}
+                <AddTicket toggleReload={toggleReload} setError={setError}/>
                 {
                     tickets.map((ticket) => (
                         <li key={ticket.id} className={`ticket ticket-${ticket.priority.toLowerCase()}`}>
                             <section>
-                                <strong className="title">{ticket.title}</strong>
+                                <strong className="title">{`${ticket.id} - ${ticket.title}`}</strong>
                                 <p>{ticket.description}</p>
                                 <p><strong>Statut</strong> : {ticket.status}</p>
                                 <p><strong>Tags</strong> : {ticket.tags.join(", ")}</p>
@@ -144,13 +139,11 @@ export function TicketList(){
                         </li>
                     ))
                 }
-                {/* Appel d'ajout de ticket */}
-                <AddTicket onAddTicket={addTicket} setError={setError}/>
             </ul>
             {/* Si le bouton supprimer est cliqué, exécution de RemoveTicket */}
             {removeSelectedTicket && (
                 <RemoveTicket
-                onRemoveTicket={removeTicket}
+                toggleReload={toggleReload}
                 onClose={() => setRemoveSelectedTicket(null)}
                 id={removeSelectedTicket}
                 setError={setError}
@@ -159,7 +152,7 @@ export function TicketList(){
             {/* Si le bouton modifier est cliqué, exécution de UpdateTicket */}
             {updateSelectedTicket && (
                 <UpdateTicket
-                onUpdateTicket={updateTicket}
+                toggleReload={toggleReload}
                 onClose={() => setUpdateSelectedTicket(null)}
                 selectedTicket={updateSelectedTicket}
                 setError={setError}

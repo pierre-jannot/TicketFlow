@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Composant de suppression de ticket
-export function RemoveTicket({ onRemoveTicket, onClose, id, setError }){
+export function RemoveTicket({ toggleReload, onClose, id, setError }){
     const [loading, setLoading] = useState(false);
 
     // Exécution de la suppression du ticket
@@ -26,9 +26,8 @@ export function RemoveTicket({ onRemoveTicket, onClose, id, setError }){
                 : `Erreur serveur (${res.status})`;
                 throw new Error(err);
             }
-            const deletedId = parseInt(id, 10);
-            // Suppression du ticket dans le front
-            onRemoveTicket(deletedId);
+            // Rechargement du GET/POST
+            toggleReload();
         } catch (err) {
             console.error(err);
             const error = `${err.message}`
