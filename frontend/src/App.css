@@ -11,13 +11,14 @@ h1 {
 
 /*Style du groupe tickets*/
 #tickets {
-    max-width: 95vw;
-    gap: 15px;
-    margin: auto auto;
-    padding: 0;
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  margin: auto;
+  max-width: 95vw;
+  gap: 15px;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 /* Style unitaire des tickets */
@@ -85,6 +86,69 @@ h1 {
   background-color: #2b5b3f;
 }
 
+.sort-and-filter {
+  width: auto;
+  display: grid;
+  position: fixed;
+  grid-template-columns: auto auto;
+  top: 2.5%;
+  right: 3.8%;
+  gap: 10px;
+}
+
+/* Style du filtrage */
+.filter-window, .sort-window {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 100;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.sort-window {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.sort-window select, .filter-dropdown, .delete-button, .modify-button, .add-button {
+  margin-top: 3px;
+  margin-left: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #ccc;
+}
+
+.sort-window select:hover, .filter-dropdown:hover, .delete-button:hover, .modify-button:hover, .add-button:hover {
+  cursor: pointer;
+}
+
+.add-button {
+  font-size: 20px;
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  margin-left: 2.5vw;
+  cursor: pointer;
+}
+
+.add-button:hover, .modify-button:hover {
+  background-color: #4e5c9b;
+  border: 2px solid rgb(19, 19, 70);
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #a73939;
+  border: 2px solid rgb(70, 19, 19);
+  color: white;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
 
 /* Style de l'overlay */
 .overlay {
@@ -114,7 +178,6 @@ h1 {
 /* Style du bouton d'ajout de ticket */
 #add-ticket {
   display: flex;
-  justify-content: center;
   padding-bottom: 20px;
 }
 

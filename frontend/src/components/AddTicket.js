@@ -67,7 +67,7 @@ export function AddTicket({ onAddTicket, setError }){
     return (
         <div>
             {/* Bouton d'ouverture de la modale */}
-            <button onClick={() => setShowModal(true)}>Ajouter</button>
+            <button className="add-button" onClick={() => setShowModal(true)}>+</button>
 
             {/* Affichage de la modale */}
             {showModal && (

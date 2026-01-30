@@ -8,9 +8,14 @@ export function TicketList(){
     const [tickets, setTickets] = useState([]);
     const [sortMethod, setSortMethod] = useState('');
     const [filterMethod, setFilterMethod] = useState([]);
+    const [filterOpen, setFilterOpen] = useState(false);
     const [removeSelectedTicket, setRemoveSelectedTicket] = useState(null);
     const [updateSelectedTicket, setUpdateSelectedTicket] = useState(null);
-
+    const availableTags = [
+            "bug","backend","documentation","feature","form",
+            "frontend","mobile","performance","search",
+            "sorting","ui","ux","validation","workflow"
+            ];
     //Gestion des erreurs
     const [error, setError] = useState(null);
 
@@ -29,9 +34,17 @@ export function TicketList(){
         setTickets(prev => prev.map(ticket => ticket.id === id ? {...ticket, status: newStatus } : ticket));
     }
 
+    // Mise en place du toggle/untoggle des filtres tags
+    const toggleTag = (tag) => {
+        setFilterMethod(prev =>
+            prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+        );
+    }
+
     //GET des tickets
     useEffect(() => {
         const load = async() => {
+            setError(null);
             try {
                 let res;
                 //Si méthode de tri ou filtre
@@ -58,6 +71,8 @@ export function TicketList(){
                     data = null;
                 }
 
+                console.log(data)
+
                 if (!res.ok) {
                     const err = data
                     ? `Code: ${data.code || res.status} - Message: ${data.detail || data.message}`
@@ -75,26 +90,48 @@ export function TicketList(){
         };
         load();
     },
-    [sortMethod]);
+    [sortMethod,filterMethod]);
 
     //Affichage dans App.js des éléments
     return (
         <>
             {error && <p className="error">⚠ {error}</p>}
+            
             {/* Appel d'ajout de ticket */}
             <div id="add-ticket">
                 <AddTicket onAddTicket={addTicket} setError={setError}/>
             </div>
-            {/* Liste des méthodes de tri */}
-            <select
-            name="sort-method"
-            value={sortMethod}
-            onChange={(e) => setSortMethod(e.target.value)}>
-                <option value="Id">Id</option>
-                <option value="Priority">Priorité</option>
-                <option value="Status">Statut</option>
-                <option value="Date">Date</option>
-            </select>
+            <section className="sort-and-filter">
+                {/* Liste des méthodes de tri */}
+                <section className="sort-window">
+                    <p><strong>Trier par :</strong></p>
+                    <select
+                    name="sort-method"
+                    value={sortMethod}
+                    onChange={(e) => setSortMethod(e.target.value)}>
+                        <option value="Id">Id</option>
+                        <option value="Priority">Priorité</option>
+                        <option value="Status">Statut</option>
+                        <option value="Date">Date</option>
+                    </select>
+                </section>
+                {/* Choix des tags de filtre */}
+                <section className="filter-window">
+                    <button onClick={() => setFilterOpen(!filterOpen)} className="filter-dropdown">
+                        Filtres {filterOpen ? "▲" : "▼"}
+                    </button>
+                    {filterOpen && (
+                        <div className="filters">
+                            {availableTags.map(tag => (
+                                <label key={tag}>
+                                    <input type="checkbox" checked={filterMethod.includes(tag)} onChange={() => toggleTag(tag)}/>
+                                    {tag}
+                                </label>
+                            ))}
+                        </div>
+                    )}
+                </section>
+            </section>
             {/* Affichage des tickets */}
             <ul id="tickets">
                 {
@@ -104,8 +141,8 @@ export function TicketList(){
                                 <strong className="title">{ticket.title}</strong>
                                 <p>{ticket.description}</p>
                                 <p><strong>Statut</strong> : {ticket.status}</p>
-                                <button onClick={() => setRemoveSelectedTicket(ticket.id)}>Supprimer</button>
-                                <button onClick={() => setUpdateSelectedTicket(ticket)}>Modifier</button>
+                                <button className="delete-button" onClick={() => setRemoveSelectedTicket(ticket.id)}>Supprimer</button>
+                                <button className="modify-button" onClick={() => setUpdateSelectedTicket(ticket)}>Modifier</button>
                             </section>
                         </li>
                     ))

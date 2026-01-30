@@ -61,12 +61,18 @@ def sort_tickets(sortAndFilter: SortAndFilter):
         tickets = readTickets()
         if sortMethod:
             tickets = sortTickets(sortMethod,tickets)
+        print(len(tickets))
         if filterMethod:
             for filter in filterMethod:
                 tickets = filterTickets(filter,tickets)
+        if len(tickets)==0:
+            raise ValueError
         return tickets
     except:
-        raise HTTPException(status_code=400, detail="Bad sort method request")
+        if not tickets:
+            raise HTTPException(status_code=404, detail="No tickets with this sort/filter method")
+        else:
+            raise HTTPException(status_code=400, detail="Bad sort/filter method request")
 
 @app.post("/tickets")
 def add_ticket(item: NewTicket):

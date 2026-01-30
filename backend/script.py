@@ -62,11 +62,8 @@ def filterTickets(value,tickets):
     L = []
     for ticket in tickets:
         if value in ticket["tags"]:
-            L.append(ticket["id"])
-    if len(L)==0:
-        return "No tickets with this tag"
-    else:
-        return L
+            L.append(ticket)
+    return L
     
 def sortTickets(sortMethod,tickets):
     if sortMethod=="Status":
