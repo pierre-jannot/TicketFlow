@@ -34,6 +34,7 @@ class SortMethod(str, Enum):
     Priority = "Priority"
     Id = "Id"
     Date = "Date"
+    NoSort = ""
 
 class SortAndFilter(BaseModel):
     sortMethod: SortMethod
