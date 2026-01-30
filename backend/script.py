@@ -58,8 +58,7 @@ def deleteTicket(id):
     else:
         raise Exception("Ticket not found")
 
-def filterTickets(value):
-    tickets = readTickets()
+def filterTickets(value,tickets):
     L = []
     for ticket in tickets:
         if value in ticket["tags"]:
@@ -69,8 +68,7 @@ def filterTickets(value):
     else:
         return L
     
-def sortTickets(sortMethod):
-    tickets=readTickets()
+def sortTickets(sortMethod,tickets):
     if sortMethod=="Status":
         L = []
         d = {"Ouvert" : [], "En cours" : [], "Fermé" : []}
@@ -92,8 +90,7 @@ def sortTickets(sortMethod):
     elif sortMethod=="Id":
         return sorted(tickets, key=lambda x: x["id"])
     elif sortMethod=="Date":
-        L = sorted(tickets, key=lambda x: x["createdAt"])
-        return [ticket["id"] for ticket in L]
+        return sorted(tickets, key=lambda x: x["createdAt"])
 
 def countTickets():
     tickets = readTickets()

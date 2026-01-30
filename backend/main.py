@@ -29,6 +29,10 @@ class Status(str, Enum):
     InProgress = "En cours"
     Closed = "Fermé"
 
+class SortAndFilter(BaseModel):
+    sortMethod: str
+    filterMethod: List[str]
+
 class UpdateTicket(BaseModel):
     status: Status
 
@@ -49,10 +53,18 @@ def show_tickets():
     except:
         raise HTTPException(status_code=404, detail="Tickets not found")
 
-@app.get("/tickets/{sortMethod}")
-def sort_tickets(sortMethod: str):
+@app.post("/tickets/sort")
+def sort_tickets(sortAndFilter: SortAndFilter):
     try:
-        return sortTickets(sortMethod)
+        sortMethod = sortAndFilter.sortMethod
+        filterMethod = sortAndFilter.filterMethod
+        tickets = readTickets()
+        if sortMethod:
+            tickets = sortTickets(sortMethod,tickets)
+        if filterMethod:
+            for filter in filterMethod:
+                tickets = filterTickets(filter,tickets)
+        return tickets
     except:
         raise HTTPException(status_code=400, detail="Bad sort method request")
 

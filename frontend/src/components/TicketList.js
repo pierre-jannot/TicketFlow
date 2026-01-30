@@ -6,6 +6,8 @@ import { UpdateTicket } from "./UpdateTicket";
 export function TicketList(){
     //Mise à jour de la liste tickets
     const [tickets, setTickets] = useState([]);
+    const [sortMethod, setSortMethod] = useState('');
+    const [filterMethod, setFilterMethod] = useState([]);
     const [removeSelectedTicket, setRemoveSelectedTicket] = useState(null);
     const [updateSelectedTicket, setUpdateSelectedTicket] = useState(null);
 
@@ -31,7 +33,22 @@ export function TicketList(){
     useEffect(() => {
         const load = async() => {
             try {
-                const res = await fetch("/tickets");
+                let res;
+                //Si méthode de tri ou filtre
+                if(sortMethod || filterMethod.length){
+                    res = await fetch(`/tickets/sort`, {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            sortMethod: sortMethod,
+                            filterMethod: filterMethod
+                        })
+                    })
+                }
+                //Sinon GET classique
+                else {
+                    res = await fetch(`/tickets`);
+                }
                 const text = await res.text();
                 let data;
 
@@ -58,7 +75,7 @@ export function TicketList(){
         };
         load();
     },
-    []);
+    [sortMethod]);
 
     //Affichage dans App.js des éléments
     return (
@@ -68,6 +85,16 @@ export function TicketList(){
             <div id="add-ticket">
                 <AddTicket onAddTicket={addTicket} setError={setError}/>
             </div>
+            {/* Liste des méthodes de tri */}
+            <select
+            name="sort-method"
+            value={sortMethod}
+            onChange={(e) => setSortMethod(e.target.value)}>
+                <option value="Id">Id</option>
+                <option value="Priority">Priorité</option>
+                <option value="Status">Statut</option>
+                <option value="Date">Date</option>
+            </select>
             {/* Affichage des tickets */}
             <ul id="tickets">
                 {
