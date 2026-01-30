@@ -86,7 +86,12 @@ export function TicketList(){
     //Affichage dans App.js des éléments
     return (
         <>
-            {error && <p className="error">⚠ {error}</p>}
+            {error && (
+            <div className="overlay" onClick={() => setError(null)}>
+                <div className="modal error" onClick={(e) => e.stopPropagation()}>
+                    <p>{error}</p>
+                </div>
+            </div>)}
             <section className="sort-and-filter">
                 {/* Liste des méthodes de tri */}
                 <section className="sort-window">
