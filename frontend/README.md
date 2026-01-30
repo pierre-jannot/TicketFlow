@@ -1,10 +1,10 @@
 # README du frontend projet
 
-## Installation App React :
+## Installation Dépendances React :
 
-Dans le dossier TicketFlow, via l'invite de commandes :
+Via l'invite de commandes :
 
-npx create-react-app frontend
+npm install
 
 ## Lancement App React :
 
@@ -15,24 +15,24 @@ npm start
 ## Récupération des endpoints :
 
 Endpoint GET avec le component TicketList.js
-Chemin : http://127.0.0.1:8000/tickets
+Chemin : /tickets
 
 Endpoint POST avec le component TicketList.js dans le cas d'un filtre ou d'un tri
-Chemin : http://127.0.0.1:8000/tickets/sort
+Chemin : /tickets/sort
 Method : POST
 Body : sortMethod, filterMethod
 
 Endpoint POST avec le component AddTicket.js
-Chemin : http://127.0.0.1:8000/tickets
+Chemin : /tickets
 Method : POST
 Body : titre, description, priorité, tags
 
 Endpoint PATCH avec le component UpdateTicket.js
-Chemin : http://127.0.0.1:8000/tickets/idTicket
+Chemin : /tickets/idTicket
 Method : PATCH
 Body : priorité
 
 Endpoint DELETE avec le component RemoveTicket.js
-Chemin : http://127.0.0.1:8000/tickets/idTicket
+Chemin : /tickets/idTicket
 Methode : DELETE
 

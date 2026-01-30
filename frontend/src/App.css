@@ -105,6 +105,7 @@ h1 {
   top: 2.5%;
   right: 3.8%;
   gap: 10px;
+  z-index: 150;
 }
 
 /* Style du filtrage */

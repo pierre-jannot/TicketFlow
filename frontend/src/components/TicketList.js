@@ -70,7 +70,7 @@ export function TicketList(){
                     : `Erreur serveur (${res.status})`;
                     throw new Error(err);
                 }
-
+                // Mise à jour des tickets
                 setTickets(data);
             }
             catch(err) {
@@ -86,6 +86,7 @@ export function TicketList(){
     //Affichage dans App.js des éléments
     return (
         <>
+            {/* Modale des erreurs */}
             {error && (
             <div className="overlay" onClick={() => setError(null)}>
                 <div className="modal error" onClick={(e) => e.stopPropagation()}>
