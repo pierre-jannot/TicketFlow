@@ -45,9 +45,16 @@ def read_root():
 @app.get("/tickets")
 def show_tickets():
     try:
-        return {"code":200,"message":"GET /tickets successfull","value":readTickets()}
+        return readTickets()
     except:
         raise HTTPException(status_code=404, detail="Tickets not found")
+
+@app.get("/tickets/{sortMethod}")
+def sort_tickets(sortMethod: str):
+    try:
+        return sortTickets(sortMethod)
+    except:
+        raise HTTPException(status_code=400, detail="Bad sort method request")
 
 @app.post("/tickets")
 def add_ticket(item: NewTicket):
@@ -55,19 +62,19 @@ def add_ticket(item: NewTicket):
     description = item.description
     priority = item.priority
     tags = item.tags
-    return {"code":201,"message":"POST /tickets successfull","value":addTicket(title,description,priority,tags)}
+    return addTicket(title,description,priority,tags)
 
 @app.patch("/tickets/{id}")
 def update_ticket(id: int, item: UpdateTicket):
     status = item.status
     try:
-        return {"code":200,"message":"PATCH /tickets " + str(id) + " successfull","value":updateTicket(id,status)}
+        return updateTicket(id,status)
     except:
-        return {"code":404,"message":"Ticket " + str(id) + " not found","value":""}
+        raise HTTPException(status_code=404, detail="Ticket not found")
 
 @app.delete("/tickets/{id}")
 def remove_ticket(id: int):
     try:
-        return {"code":204,"message":"DELETE /tickets " + str(id) + " successfull","value":deleteTicket(id)}
+        return deleteTicket(id)
     except:
-        return {"code":404,"message":"Ticket " + str(id) + " not found","value":""}
+        raise HTTPException(status_code=404, detail="Ticket not found")

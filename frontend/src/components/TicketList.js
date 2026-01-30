@@ -31,14 +31,14 @@ export function TicketList(){
     useEffect(() => {
         const load = async() => {
             try {
-                const res = await fetch("/tickets"); // assure-toi que le serveur est UP
-                const text = await res.text(); // on lit le body en texte
+                const res = await fetch("/tickets");
+                const text = await res.text();
                 let data;
 
                 try {
-                    data = text ? JSON.parse(text) : null; // on parse seulement si possible
+                    data = text ? JSON.parse(text) : null;
                 } catch {
-                    data = null; // body pas JSON
+                    data = null;
                 }
 
                 if (!res.ok) {
@@ -48,7 +48,7 @@ export function TicketList(){
                     throw new Error(err);
                 }
 
-                setTickets(data.value);
+                setTickets(data);
             }
             catch(err) {
                 console.error(err);

@@ -9,21 +9,29 @@ export function RemoveTicket({ onRemoveTicket, onClose, id, setError }){
         setLoading(true);
         try {
             // Suppression du ticket dans le back
-            const response = await fetch(`/tickets/${id}`, {
+            const res = await fetch(`/tickets/${id}`, {
                 method: "DELETE"
             });
-            const data = await response.json();
-            if(data.code==204){
-                const deletedId = parseInt(id, 10);
-                // Suppression du ticket dans le front
-                onRemoveTicket(deletedId);
+            const text = await res.text();
+            let data;
+
+            try{
+                data = text ? JSON.parse(text) : null;
+            } catch {
+                data = null;
             }
-            else{
-                throw data;
+            if(!res.ok){
+                const err = data
+                ? `Code: ${data.code || res.status} - Message: ${data.detail || data.message}`
+                : `Erreur serveur (${res.status})`;
+                throw new Error(err);
             }
+            const deletedId = parseInt(id, 10);
+            // Suppression du ticket dans le front
+            onRemoveTicket(deletedId);
         } catch (err) {
             console.error(err);
-            const error = `Code: ${err.code} - Message: ${err.message}`
+            const error = `${err.message}`
             setError(error);
         } finally {
             setLoading(false);

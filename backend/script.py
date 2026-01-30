@@ -15,7 +15,7 @@ def buildTicket(id,title,description,priority,tags,createdAt):
                  "title":title,
                  "description":description,
                  "priority":priority,
-                 "status":"Open",
+                 "status":"Ouvert",
                  "tags":tags,
                  "createdAt":createdAt}
     return newTicket
@@ -73,7 +73,7 @@ def sortTickets(sortMethod):
     tickets=readTickets()
     if sortMethod=="Status":
         L = []
-        d = {"Open" : [], "In progress" : [], "Closed" : []}
+        d = {"Ouvert" : [], "En cours" : [], "Fermé" : []}
         for ticket in tickets:
             d[ticket["status"]].append(ticket)
         for key in d:

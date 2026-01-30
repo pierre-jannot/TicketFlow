@@ -8,31 +8,37 @@ export function UpdateTicket({ onUpdateTicket, onClose, selectedTicket, setError
     // Exécution de la mise à jour du ticket
     const handleUpdateTicket = async () => {
         setLoading(true);
-        console.log(JSON.stringify({
-                    status: status
-                }));
         try {
             // Mise à jour sur le backend
-            const response = await fetch(`/tickets/${selectedTicket.id}`, {
+            const res = await fetch(`/tickets/${selectedTicket.id}`, {
                 method: "PATCH",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     status: status.replace("-", " ")
                 })
             });
-            const data = await response.json();
-            if(data.code==200){
-                // Mise à jour sur le frontend
-                onUpdateTicket(data.value.id, data.value.status);
+            const text = await res.text();
+            let data;
+
+            try {
+                data = text ? JSON.parse(text) : null;
+            } catch {
+                data = null;
+            } 
+            if(!res.ok){
+                const err = data
+                ? `Code: ${data.code || res.status} - Message: ${data.detail || data.message}`
+                : `Erreur serveur (${res.status})`;
+                throw new Error(err);
             }
-            else{
-                throw data;
-            }
+            // Mise à jour sur le frontend
+            onUpdateTicket(data.id, data.status);
         } catch (err) {
             console.error(err);
-            const error = `Code: ${err.code} - Message: ${err.message}`
+            const error = `${err.message}`
             setError(error);
-        } finally {
+        }
+        finally {
             setLoading(false);
             // Fermeture de la modale
             onClose();
