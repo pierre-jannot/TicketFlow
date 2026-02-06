@@ -11,7 +11,6 @@ function App() {
         <span className="legend-yellow">Moyenne</span>
         <span className="legend-red">Haute</span>
       </p>
-      <ul id="tickets"></ul>
       <TicketList></TicketList>
     </div>
   );
